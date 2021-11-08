@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8" />
+        <title>Code test for Bionamic</title>
+        <style>
+            
+        </style>
+    </head>
+
+<body>
+    
+    
+<script>
+//<form id="form" onsubmit="return false;">
+    //<input style="position:absolute; top:80%; left:5%; width:40%;" type="text" id="userInput" />
+      //  <input style="position:absolute; top:50%; left:5%; width:40%;" type="submit" onclick="othername();" />
+    //</form>
+    
+
+
+var  special_characters = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~1234567890]/;
+
+
+
+
+class tableCreator {
+    constructor(id){
+        //The table
+        this.table = document.createElement("table");
+        this.table.setAttribute("id", id);
+        this.id = id;
+        let newrow = this.table.insertRow();
+        newrow.insertCell(0).appendChild(document.createTextNode("First name"));
+        newrow.insertCell(1).appendChild(document.createTextNode("Last name"));
+        document.body.appendChild(this.table);
+        //Kanske gör en dictionary för alla namnen
+
+    
+
+        //The text input field
+        this.input = document.createElement("input");
+        this.input.setAttribute("type","text");
+        this.input.setAttribute("placeholder","First lastname");
+        this.input.setAttribute("id",this.id);
+        this.input.onkeyup = event => {
+            event.preventDefault();
+            if (event.keyCode == 13) {
+                if( special_characters.test(this.input.value) ) {
+                    console.log("Det finns speciella karaktärer")
+                    console.log(this.input.value)
+                }
+                
+             else {
+                console.log("Det finns inga speciall karaktärer")
+                console.log(this.input.value)
+            }
+        }
+        }
+
+        //this.input.addEventListener("keyup", function() {
+          //  event.preventDefault();
+            //if (event.keyCode == 13) {
+           //     console.log(document.getElementById(this.input.id).value);
+            //}
+       // })      
+
+        //The sumbit button
+        this.submit = document.createElement("input");
+        this.submit.setAttribute("type", "submit");
+        this.submit.setAttribute("id", this.id);
+        this.submit.setAttribute("value", "Add")
+        
+        document.body.appendChild(this.input);
+        document.body.appendChild(this.submit);
+        this.submit.onclick = event => {this.print() } //https://stackoverflow.com/questions/57963863/javascript-how-do-i-use-onclick-event-on-a-class-method-to-call-another-class-me
+        
+    }
+    print() {
+        console.log("kom igen");
+    }
+
+
+    addPerson(fullName) {
+        var splitNames = fullName.split(' ');
+        let newrow = this.table.insertRow();
+        newrow.insertCell(0).appendChild(document.createTextNode(splitNames[0]));
+        newrow.insertCell(1).appendChild(document.createTextNode(splitNames[1]));
+    }
+}
+
+//Skapa ett textfält som sparar värdet när enter trycks
+
+
+
+let abdi = new tableCreator("abdi")
+
+</script>
+
+
+</body>
+</html>
