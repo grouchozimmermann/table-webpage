@@ -1,0 +1,16 @@
+div {
+    margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
+  }
+
+  th, td {
+    border: 1px solid black;
+  }
+
+  table {
+    width: 100%;
+    border: 1px solid black;
+    border-collapse: collapse;
+  }

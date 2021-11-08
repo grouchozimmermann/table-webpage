@@ -4,19 +4,15 @@
     <head>
         <meta charset="utf-8" />
         <title>Code test for Bionamic</title>
-        <style>
-            
-        </style>
+        <link rel="stylesheet" type="text/css" href="tabledesign.css">
+        
     </head>
 
 <body>
     
     
 <script>
-//<form id="form" onsubmit="return false;">
-    //<input style="position:absolute; top:80%; left:5%; width:40%;" type="text" id="userInput" />
-      //  <input style="position:absolute; top:50%; left:5%; width:40%;" type="submit" onclick="othername();" />
-    //</form>
+
     
 
 
@@ -27,6 +23,9 @@ var  special_characters = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~1234567890]/;
 
 class tableCreator {
     constructor(id){
+        this.div = document.createElement("div");
+
+        
         //The table
         this.table = document.createElement("table");
         this.table.setAttribute("id", id);
@@ -35,11 +34,8 @@ class tableCreator {
         let newrow = this.table.insertRow();
         newrow.insertCell(0).appendChild(document.createTextNode("First name"));
         newrow.insertCell(1).appendChild(document.createTextNode("Last name"));
-        document.body.appendChild(this.table);
-        //Kanske gör en dictionary för alla namnen
-
-    
-
+        this.div.appendChild(this.table);
+        //document.body.appendChild(this.table);
         //The text input field
         this.input = document.createElement("input");
         this.input.setAttribute("type","text");
@@ -48,8 +44,7 @@ class tableCreator {
         this.input.onkeyup = event => {
             event.preventDefault();
             if (event.keyCode == 13) {
-                if( special_characters.test(this.input.value) ) {
-                    console.log("Det finns speciella karaktärer")
+                if( special_characters.test(this.input.value) ) {   
                     alert("Special characters not allowed")
                 }
                 
@@ -59,17 +54,19 @@ class tableCreator {
             }
         }
         }
-
-
-        //The sumbit button
-        this.submit = document.createElement("input");
-        this.submit.setAttribute("type", "submit");
-        this.submit.setAttribute("id", this.id);
-        this.submit.setAttribute("value", "Add")
+        //The button
+        this.button = document.createElement("input");
+        this.button.setAttribute("type", "button");
+        this.button.setAttribute("id", this.id);
+        this.button.setAttribute("value", "Add")
         
         document.body.appendChild(this.input);
-        document.body.appendChild(this.submit);
-        this.submit.onclick = event => {this.print() } //https://stackoverflow.com/questions/57963863/javascript-how-do-i-use-onclick-event-on-a-class-method-to-call-another-class-me
+        document.body.appendChild(this.button);
+        this.button.onclick = event => {this.print() } //https://stackoverflow.com/questions/57963863/javascript-how-do-i-use-onclick-event-on-a-class-method-to-call-another-class-me
+        
+        this.div.appendChild(this.input);
+        this.div.appendChild(this.button);
+        document.body.appendChild(this.div)
         
     }
     print() {
@@ -85,8 +82,6 @@ class tableCreator {
     }
 }
 
-//Skapa ett textfält som sparar värdet när enter trycks
-
 
 
 let abdi = new tableCreator("abdi")
@@ -94,6 +89,8 @@ let knas = new tableCreator("knas")
 
 //TODO LIST
 //Must contain a space with first + last name
+//Se till att submitknappen också funkar 
+//Fixa en css fil som stylear tabellerna
 </script>
 
 
