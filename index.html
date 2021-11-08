@@ -31,6 +31,7 @@ class tableCreator {
         this.table = document.createElement("table");
         this.table.setAttribute("id", id);
         this.id = id;
+        this.nameList = [];
         let newrow = this.table.insertRow();
         newrow.insertCell(0).appendChild(document.createTextNode("First name"));
         newrow.insertCell(1).appendChild(document.createTextNode("Last name"));
@@ -49,22 +50,16 @@ class tableCreator {
             if (event.keyCode == 13) {
                 if( special_characters.test(this.input.value) ) {
                     console.log("Det finns speciella karaktärer")
-                    console.log(this.input.value)
+                    alert("Special characters not allowed")
                 }
                 
              else {
-                console.log("Det finns inga speciall karaktärer")
-                console.log(this.input.value)
+                this.addPerson(this.input.value)
+                this.nameList.push(this.input.value)
             }
         }
         }
 
-        //this.input.addEventListener("keyup", function() {
-          //  event.preventDefault();
-            //if (event.keyCode == 13) {
-           //     console.log(document.getElementById(this.input.id).value);
-            //}
-       // })      
 
         //The sumbit button
         this.submit = document.createElement("input");
@@ -95,7 +90,10 @@ class tableCreator {
 
 
 let abdi = new tableCreator("abdi")
+let knas = new tableCreator("knas")
 
+//TODO LIST
+//Must contain a space with first + last name
 </script>
 
 
